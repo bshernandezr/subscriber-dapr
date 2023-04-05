@@ -1,6 +1,6 @@
 import { NestFactory } from '@nestjs/core';
-import { DaprModule } from './dapr/dapr.module';
-import { DaprService } from './dapr/dapr.service';
+import { DaprModule } from './shared/dapr/dapr.module';
+import { DaprService } from './shared/dapr/dapr.service';
 
 async function bootstrap() {
   const app = await NestFactory.create(DaprModule);

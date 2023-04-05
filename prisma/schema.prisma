@@ -1,0 +1,27 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = "postgresql://root:123456@localhost:5432/test?schema=CLM"
+}
+
+model Ticket {
+  ticket_id      Int              @id @default(autoincrement())
+  customer_name  String?          @db.VarChar
+  age            Int?
+  creationdate   DateTime         @default(dbgenerated("CURRENT_DATE")) @db.Date
+  tickettype     String?          @db.VarChar
+  ticketstatus   String?          @db.VarChar
+  Ticket_History Ticket_History[]
+}
+
+model Ticket_History {
+  history_id   Int      @id @default(autoincrement())
+  ticketid     Int?
+  creationdate DateTime @default(dbgenerated("CURRENT_DATE")) @db.Date
+  tickettype   String?  @db.VarChar
+  ticketstatus String?  @db.VarChar
+  Ticket       Ticket?  @relation(fields: [ticketid], references: [ticket_id], onDelete: NoAction, onUpdate: NoAction)
+}

@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { DaprModule } from './dapr/dapr.module';
+import { DaprModule } from './shared/dapr/dapr.module';
 
 @Module({
   imports: [DaprModule],
